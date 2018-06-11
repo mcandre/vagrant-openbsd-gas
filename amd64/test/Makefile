@@ -8,7 +8,7 @@ test-boot:
 	vagrant up
 
 test-compile: test-boot
-	vagrant ssh -c "cd /vagrant && as -o hello.o hello.s && ld -o hello -nopie hello.o && ./hello"
+	vagrant ssh -c "cd /vagrant && as -o hello.o hello.s && ld -o hello -nopie hello.o && strip -s hello && ./hello"
 
 clean-vm:
 	-vagrant destroy -f

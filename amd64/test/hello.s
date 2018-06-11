@@ -7,16 +7,16 @@
   .long 0
   .align 2
 
-.data
+.section .rodata
 
+msg: .ascii "Hello World!\n"
+
+.equ msg_len, .-msg
 .equ sys_write, 4
 .equ sys_exit, 1
 .equ stdout, 1
 
-msg: .ascii "Hello World!\n"
-.equ msg_len, .-msg
-
-.text
+.section .text
 
 .global _start
 
@@ -28,5 +28,5 @@ _start:
   syscall
 
   mov $sys_exit, %rax
-  mov $0, %rdi
+  xor %rdi, %rdi
   syscall
